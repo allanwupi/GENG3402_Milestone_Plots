@@ -1,0 +1,20 @@
+% ---EXPERIMENT 1 SIMULATION A---
+DATA_POS_FILEPATH = 'data/data_pos_sim1_a.mat';
+DATA_VM_FILEPATH = 'data/data_vm_sim1_a.mat';
+FIG_TITLE = 'Ideal PV Controller Step Response';
+XLIM = [21.2 21.8];
+XDELTA = 0.050;
+
+% ---EXPERIMENT 1 SIMULATION B---
+DATA_POS_FILEPATH = 'data/data_pos_sim1_b.mat';
+DATA_VM_FILEPATH = 'data/data_vm_sim1_b.mat';
+FIG_TITLE = 'Filtered PV Controller Step Response';
+XLIM = [21.2 21.8];
+XDELTA = 0.050;
+
+% ---EXPERIMENT 1 IMPLEMENTATION---
+DATA_POS_FILEPATH = 'data/data_pos_implementation1.mat';
+DATA_VM_FILEPATH = 'data/data_vm_implementation1.mat';
+FIG_TITLE = 'Real PV Controller Step Response';
+XLIM = [21.2 21.8];
+XDELTA = 0.050;

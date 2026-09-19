@@ -20,14 +20,14 @@ DEN2 = [1 2 17];
 % - Two structs containing the transient-response parameters 
 function [S1, S2] = plot_step_response(n1, d1, n2, d2)
     % Define a very fine time vector to increase the precision of step response data over defaults
-    t = (0:0.0001:10)';
+    t = (0:0.0001:7)';
     sys1 = tf(n1, d1);
     sys2 = tf(n2, d2);
     % Use stepplot function provided by Control System Toolbox for unit step response
     figure;
     stepplot(sys1, sys2, t);
     set(gcf, 'Color', 'w')
-    grid;
+    grid
     legend('5th Order System', '2nd Order Approximation');
     hold;
     yss = n1(end) / d1(end);

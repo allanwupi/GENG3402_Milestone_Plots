@@ -98,4 +98,5 @@ end
 
 % Call functions using PD controller parameters
 proportional_derivative_root_locus(PROPORTIONAL_GAIN, DERIVATIVE_GAIN, DESIRED_POLE);
-S = proportional_derivative_step_response(PROPORTIONAL_GAIN, DERIVATIVE_GAIN, SETTLING_BAND)
+S = proportional_derivative_step_response(PROPORTIONAL_GAIN, DERIVATIVE_GAIN, SETTLING_BAND);
+disp(S);

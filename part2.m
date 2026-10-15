@@ -98,4 +98,5 @@ end
 
 % Call functions using calculated controller parameters
 phase_lead_root_locus(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE, DESIRED_POLE);
-S = phase_lead_step_response(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE, SETTLING_BAND)
+S = phase_lead_step_response(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE, SETTLING_BAND);
+disp(S);

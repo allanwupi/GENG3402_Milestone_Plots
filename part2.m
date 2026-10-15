@@ -22,6 +22,7 @@ end
 
 
 %% Function to produce annotated root locus plot
+% des is the desired pole location (complex value)
 function phase_lead_root_locus(Kc, z, p, des)
     T = get_phase_lead_tf(Kc, z, p);
     figure;

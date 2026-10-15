@@ -1,4 +1,4 @@
-# MATLAB Script for Milestone 2 Assignment
+# MATLAB Script for Milestone 2/3 Assignment
 Use this script to produce the step response plot and pole-zero plot of a transfer function and its dominant pole (second-order) approximation.
 
 ## To-Do List

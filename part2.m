@@ -2,12 +2,12 @@
 % Authors: Allan Wu (2810308) and Bhashon Saha (25253764)
 % Last updated: 15 October 2026
 
-DESIRED_POLE = -1+1j;
+DESIRED_POLE = -0.232+0.286j;
 SETTLING_BAND = 0.02;
 
-CONTROLLER_GAIN = 1;
-CONTROLLER_ZERO = -1;
-CONTROLLER_POLE = -1.1;
+CONTROLLER_GAIN = 2.53;
+CONTROLLER_ZERO = -2/3;
+CONTROLLER_POLE = -0.964;
 
 % Phase-lead controller: Gc(s) = Kc*(s+z)/(s+p) where |p| > |z|
 function T = get_phase_lead_tf(Kc, z, p)
@@ -35,7 +35,7 @@ function phase_lead_root_locus(Kc, z, p, des)
     for i = 1:length(poles)
         plot(real(poles(i)), imag(poles(i)), 'rx', 'MarkerSize', 8, 'LineWidth', 1)
         text(real(poles(i)), imag(poles(i)), ...
-        sprintf('  %.2f%+.2fj', real(poles(i)), imag(poles(i))));
+        sprintf('  %.3f%+.3fj', real(poles(i)), imag(poles(i))));
         % Calculate and print the natural frequency and damping of desired pole
         wn = abs(poles(i))/2/pi;
         wd = imag(poles(i))/2/pi;
@@ -53,7 +53,7 @@ end
 % note: delta is the settling error band, 0 < delta < 1.0
 function [S] = phase_lead_step_response(Kc, z, p, delta, stoptime)
     if nargin < 5
-        stoptime = 60.0;
+        stoptime = 30.0;
     end
     if nargin < 4
         delta = 0.02; % If not provided, set the default settling band = 2%
@@ -70,7 +70,7 @@ function [S] = phase_lead_step_response(Kc, z, p, delta, stoptime)
     hold;
     yss = dcgain(T);
     % Shade in the settling error bound
-    ylim([0, yss*1.1])
+    ylim([0, 1.8])
     yline(yss*(1-delta), '--', '(1-\delta)y_{ss}', ...
         'LabelHorizontalAlignment', 'right', 'LabelVerticalAlignment', 'bottom', ...
         'HandleVisibility', 'off', 'Color', '#000000');

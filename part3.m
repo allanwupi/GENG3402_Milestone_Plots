@@ -2,7 +2,7 @@
 % Authors: Allan Wu (2810308) and Bhashon Saha (25253764)
 % Last updated: 15 October 2026
 
-DESIRED_POLE = -1+1j;
+DESIRED_POLE = -0.232+0.286j;
 SETTLING_BAND = 0.02;
 
 PROPORTIONAL_GAIN = 1;
@@ -69,7 +69,7 @@ function [S] = proportional_derivative_step_response(Kp, Kd, delta, stoptime)
     hold;
     yss = dcgain(T);
     % Shade in the settling error bound
-    ylim([0, yss*1.1])
+    ylim([0, 1.8])
     yline(yss*(1-delta), '--', '(1-\delta)y_{ss}', ...
         'LabelHorizontalAlignment', 'right', 'LabelVerticalAlignment', 'bottom', ...
         'HandleVisibility', 'off', 'Color', '#000000');

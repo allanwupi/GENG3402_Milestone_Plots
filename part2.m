@@ -1,5 +1,5 @@
 %% GENG3402 Assignment 3 - Part 2
-% Author: Allan Wu (2810308)
+% Authors: Allan Wu (2810308) and Bhashon Saha (25253764)
 % Last updated: 15 October 2026
 
 CONTROLLER_GAIN = 1;
@@ -10,21 +10,21 @@ CONTROLLER_POLE = -10;
 % Phase-lead controller: Gc(s) = Kc*(s+z)/(s+p) where |p| > |z|
 function T = get_phase_lead_tf(Kc, z, p)
     s = tf('s');
-    Gc = Kc * (s-z)/(s-p);
-    Gv = 0.6 / (3*s + 2);
-    Gp = 28 / (30*s + 2);
-    H = 2 / (5*s + 4);
+    Gc = Kc * (s-z)/(s-p); % Compensator
+    Gv = 0.6 / (3*s + 2);  % Valve
+    Gp = 28 / (30*s + 2);  % Heat exchanger
+    H = 2 / (5*s + 4);     % Sensor
     % Overall system transfer function T(s)
     T = Gc * Gv * Gp / (1 + Gc * Gv * Gp * H);
 end
 
 
 %% Function to produce annotated root locus plot
-function rl_phase_lead(Kc, z, p)
+function phase_lead_root_locus(Kc, z, p)
     T = get_phase_lead_tf(Kc, z, p);
     figure;
     rlocusplot(T);
-    title('Root locus for phase-lead controller');
+    title('Root locus of phase-lead compensated system');
     hold on;
     p = pole(T);
     % Add labels for the pole locations
@@ -43,9 +43,10 @@ function rl_phase_lead(Kc, z, p)
 end
 
 
-%% Time response plot (to verify settling time)
-% delta is the settling error band, 0 < delta < 1.0
-function [S] = step_plot_phase_lead(Kc, z, p, delta)
+%% Function to produce annotated time response plot
+% main purpose of this function is to compute and graphically demonstrate the settling time
+% note: delta is the settling error band, 0 < delta < 1.0
+function [S] = phase_lead_step_response(Kc, z, p, delta)
     if nargin < 4
         delta = 0.02; % If not provided, set the default settling band = 2%
     end
@@ -90,5 +91,5 @@ end
 
 % Call functions using calculated controller parameters
 T = get_phase_lead_tf(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE)
-%rl_phase_lead(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE);
-%step_plot_phase_lead(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE);
+%phase_lead_root_locus(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE);
+%phase_lead_step_response(CONTROLLER_GAIN, CONTROLLER_ZERO, CONTROLLER_POLE);
